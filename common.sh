@@ -10,7 +10,11 @@ sleeprandom() {
 
 clone_if_nexist() {
     dir="$1"
-    repo="git@git.sr.ht:~rabbits/$1"
+    if [ -z "$SRCHUT" ]
+    then
+        SRCHUT=https://git.sr.ht/
+    fi
+    repo="${SRCHUT}~rabbits/$1"
     if [ -n "$2" ]
     then
         repo="$2"
