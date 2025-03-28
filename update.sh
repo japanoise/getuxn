@@ -28,14 +28,18 @@ oquonie
 tiny-basic
 yufo"
 
+num=1
+total=$(echo "$progs" | wc -l)
+
 for prog in $progs
 do
     (
-        report_stage "# Pulling $prog..."
+        report_stage "# Pulling $prog ($num/$total)..."
         cd "$prog" || exit 1
         git pull
         sleeprandom
     )
+    num=$((num + 1))
 done
 
 report_stage "# Updates pulled, now running build.sh"
